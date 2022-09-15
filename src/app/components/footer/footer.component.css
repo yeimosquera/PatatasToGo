@@ -1,0 +1,13 @@
+.copyride {
+  font-size: 10px;
+  margin: auto;
+}
+
+.footer {
+  margin-top: 2%;
+  background-color: black;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
