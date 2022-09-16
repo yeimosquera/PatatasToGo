@@ -44,4 +44,20 @@ export class SubscribersService {
       })
   }
 
+  updateSubscriber(data: any): Observable<any>{
+    const Token = localStorage.getItem('Token');
+    return this.http.put(this.urlBase + 'subscribers?id=' + data.Id, data,
+      {
+        headers: new HttpHeaders({ 'Authorization': `Bearera ${Token}` })
+      })
+  }
+
+  deleteSubscriber(id:number): Observable<any>{
+    const Token = localStorage.getItem('Token');
+    return this.http.delete(this.urlBase + 'subscribers?id=' + id,
+      {
+        headers: new HttpHeaders({ 'Authorization': `Bearera ${Token}` })
+      })
+  }
+
 }

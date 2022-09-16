@@ -4,6 +4,8 @@ import { SubscribersService } from '../services/subscribers.service';
 import { Subscriber } from 'src/app/interfaces/subscriber';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 
 
 const ELEMENT_DATA: Subscriber[] = [];
@@ -30,7 +32,9 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(private _snackBar: MatSnackBar,
-    private _subscribersService: SubscribersService) { }
+    private _subscribersService: SubscribersService,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.loadTableSubscribers();
@@ -48,15 +52,37 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  error(message: string) {
-    this._snackBar.open(message, '', {
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      duration: 5000,
-      panelClass: ['error']
+    openDialog(element:any): void {
+    const dialogRef = this.dialog.open(ModalDeleteComponent, {
+      width: '250px',
+      data: { Id: element.Id, Name: element.Name },
     });
   }
 
+
+updateSubscriber(element: any) {
+  console.log(element);
+
+}
+
+
+error(message: string) {
+  this._snackBar.open(message, '', {
+    horizontalPosition: 'end',
+    verticalPosition: 'top',
+    duration: 5000,
+    panelClass: ['error']
+  });
+}
+
+success(message: string) {
+  this._snackBar.open(message, '', {
+    horizontalPosition: 'end',
+    verticalPosition: 'top',
+    duration: 3000,
+    panelClass: ['success']
+  });
+}
 
 
 }

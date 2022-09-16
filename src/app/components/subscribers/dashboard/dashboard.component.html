@@ -52,10 +52,10 @@
       <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element" style="text-align: right;">
-          <a>
+          <a (click)="updateSubscriber(element)">
             <mat-icon matTooltip="Editar">edit</mat-icon>
           </a>
-          <a style="color: #d85858;">
+          <a style="color: #d85858;" (click)="openDialog(element)">
             <mat-icon matTooltip="Eliminar">delete</mat-icon>
           </a>
         </td>

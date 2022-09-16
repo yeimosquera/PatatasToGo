@@ -17,6 +17,7 @@ export class CreateSubscriberComponent implements OnInit {
 
   countries!: any[]
   form: FormGroup
+  update: boolean = true
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -46,6 +47,13 @@ export class CreateSubscriberComponent implements OnInit {
     })
   }
 
+  onSubmit() {
+    if (this.update) {
+      this.updateSubscribe()
+    } else {
+      this.addSubscribe()
+    }
+  }
 
   addSubscribe() {
 
@@ -63,6 +71,28 @@ export class CreateSubscriberComponent implements OnInit {
     this._subscribersService.addSubscribers(ubscribe).subscribe(response => {
       this.success('Suscriptor creado con éxito');
       this.router.navigate(['suscriptores']);
+    }, err => {
+      500
+      this.error('Algo salió mal en tu solicitud.');
+
+    })
+
+  }
+
+  updateSubscribe() {
+
+    const ubscribe = {
+      Id: 7927,
+      Name: this.form.value.name,
+      Email: this.form.value.email,
+      CountryCode: this.form.value.countrie.Code,
+      PhoneNumber: this.form.value.countrie.PhoneCode,
+      Area: this.form.value.area,
+      JobTitle: this.form.value.jobtitle
+    }
+
+    this._subscribersService.updateSubscriber(ubscribe).subscribe(response => {
+      this.success('Suscriptor editado con éxito');
       this.router.navigate(['suscriptores']);
     }, err => {
       500

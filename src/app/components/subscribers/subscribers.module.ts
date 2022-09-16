@@ -19,13 +19,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalDeleteComponent } from './dashboard/modal-delete/modal-delete.component';
 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    CreateSubscriberComponent
+    CreateSubscriberComponent,
+    ModalDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +44,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class SubscribersModule { }

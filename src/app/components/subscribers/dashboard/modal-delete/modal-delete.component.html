@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar Suscriptor</h1>
+<div mat-dialog-content>
+  Esta seguro que quiere eliminar a: <strong>{{data.Name}}</strong>?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="deleteSubscriber(data.Id)" mat-button mat-dialog-close cdkFocusInitial>SI</button>
+</div>
