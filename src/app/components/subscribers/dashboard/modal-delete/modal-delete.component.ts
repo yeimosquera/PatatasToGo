@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef,MAT_DIALOG_DATA,  } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {Subscriber} from '../../../../interfaces/subscriber'
+import { Subscriber } from '../../../../interfaces/subscriber'
 import { SubscribersService } from '../../services/subscribers.service';
 
 
@@ -11,10 +11,10 @@ import { SubscribersService } from '../../services/subscribers.service';
   styleUrls: ['./modal-delete.component.css']
 })
 
-@Inject(MAT_DIALOG_DATA)
+
 export class ModalDeleteComponent implements OnInit {
 
-  id:number = 0
+  id: number = 0
   constructor(public dialogRef: MatDialogRef<ModalDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Subscriber,
     private _subscribersService: SubscribersService,
@@ -26,7 +26,6 @@ export class ModalDeleteComponent implements OnInit {
 
   deleteSubscriber(elementId: number) {
     this._subscribersService.deleteSubscriber(elementId).subscribe(response => {
-      console.log(response);
       this.success('Eliminado con éxito.')
     }, err => {
       500

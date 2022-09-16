@@ -1,9 +1,9 @@
 <mat-toolbar>
-  <span>Crear Suscriptor</span>
+  <span>Editar Suscriptor</span>
 </mat-toolbar>
 <div class="container">
   <mat-card style="margin-top: 10px;">
-    <form [formGroup]="form" (ngSubmit)="addSubscribe()">
+    <form [formGroup]="form" (ngSubmit)="updateSubscribe()">
       <div class="row">
 
         <div class="col-6">
@@ -61,7 +61,7 @@
           <button type="submit" mat-raised-button [disabled]="!form.valid" color="primary">Guardar</button>
         </div>
         <div class="col-6">
-          <button routerLink="/suscriptores" mat-raised-button>Cancelar</button>
+          <button type="button" (click)="closeModal()" mat-raised-button>Cancelar</button>
         </div>
       </div>
     </form>

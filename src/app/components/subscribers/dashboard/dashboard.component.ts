@@ -6,6 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { ModalUpdateComponent } from './modal-update/modal-update.component';
+
+
 
 
 const ELEMENT_DATA: Subscriber[] = [];
@@ -34,7 +37,7 @@ export class DashboardComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar,
     private _subscribersService: SubscribersService,
     public dialog: MatDialog
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.loadTableSubscribers();
@@ -52,37 +55,37 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-    openDialog(element:any): void {
+  openDialogDelete(element: any): void {
     const dialogRef = this.dialog.open(ModalDeleteComponent, {
       width: '250px',
       data: { Id: element.Id, Name: element.Name },
     });
   }
 
+  openDialogUpdate(element: any): void {
+    const dialogRef = this.dialog.open(ModalUpdateComponent, {
+      width: '80%',
+      data: element,
+    });
+  }
 
-updateSubscriber(element: any) {
-  console.log(element);
+  error(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 5000,
+      panelClass: ['error']
+    });
+  }
 
-}
-
-
-error(message: string) {
-  this._snackBar.open(message, '', {
-    horizontalPosition: 'end',
-    verticalPosition: 'top',
-    duration: 5000,
-    panelClass: ['error']
-  });
-}
-
-success(message: string) {
-  this._snackBar.open(message, '', {
-    horizontalPosition: 'end',
-    verticalPosition: 'top',
-    duration: 3000,
-    panelClass: ['success']
-  });
-}
+  success(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 3000,
+      panelClass: ['success']
+    });
+  }
 
 
 }

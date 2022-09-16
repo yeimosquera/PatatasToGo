@@ -1,37 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SubscribersService } from '../services/subscribers.service';
-
-
+import { Subscriber } from 'src/app/interfaces/subscriber';
+import { SubscribersService } from '../../services/subscribers.service';
 
 @Component({
-  selector: 'app-create-subscriber',
-  templateUrl: './create-subscriber.component.html',
-  styleUrls: ['./create-subscriber.component.css']
+  selector: 'app-modal-update',
+  templateUrl: './modal-update.component.html',
+  styleUrls: ['./modal-update.component.css']
 })
-
-
-export class CreateSubscriberComponent implements OnInit {
+export class ModalUpdateComponent implements OnInit {
 
   countries!: any[]
   form: FormGroup
-  update: boolean = true
 
   constructor(
     private _snackBar: MatSnackBar,
     private _subscribersService: SubscribersService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public dataUpdate: Subscriber
   ) {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
+      name: [dataUpdate.Name, Validators.required],
+      email: [dataUpdate.Email, Validators.required],
       countrie: ['', Validators.required],
-      phone: ['', Validators.required],
-      jobtitle: '',
-      area: ''
+      phone: [dataUpdate.PhoneNumber, Validators.required],
+      jobtitle: dataUpdate.JobTitle,
+      area: dataUpdate.Area
     })
   }
 
@@ -45,30 +44,26 @@ export class CreateSubscriberComponent implements OnInit {
     })
   }
 
-  addSubscribe() {
-
+  updateSubscribe() {
     const ubscribe = {
+      Id: this.dataUpdate.Id,
       Name: this.form.value.name,
       Email: this.form.value.email,
       CountryCode: this.form.value.countrie.Code,
-      CountryName: this.form.value.countrie.Name,
-      PhoneCode: this.form.value.countrie.PhoneCode,
-      PhoneNumber: this.form.value.phone,
-      JobTitle: this.form.value.jobtitle,
-      Area: this.form.value.area
+      PhoneNumber: this.form.value.countrie.PhoneCode,
+      Area: this.form.value.area,
+      JobTitle: this.form.value.jobtitle
     }
 
-    this._subscribersService.addSubscribers(ubscribe).subscribe(response => {
-      this.success('Suscriptor creado con éxito');
+    this._subscribersService.updateSubscriber(ubscribe).subscribe(response => {
+      this.success('Suscriptor editado con éxito');
       this.router.navigate(['suscriptores']);
     }, err => {
       500
       this.error('Algo salió mal en tu solicitud.');
 
     })
-
   }
-
 
   error(message: string) {
     this._snackBar.open(message, '', {
@@ -86,6 +81,10 @@ export class CreateSubscriberComponent implements OnInit {
       duration: 3000,
       panelClass: ['success']
     });
+  }
+
+  closeModal(): void {
+    this.dialog.closeAll();
   }
 
 }

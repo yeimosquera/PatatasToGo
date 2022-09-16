@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalDeleteComponent } from './dashboard/modal-delete/modal-delete.component';
+import { ModalUpdateComponent } from './dashboard/modal-update/modal-update.component';
 
 
 
@@ -28,7 +29,8 @@ import { ModalDeleteComponent } from './dashboard/modal-delete/modal-delete.comp
   declarations: [
     DashboardComponent,
     CreateSubscriberComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalUpdateComponent
   ],
   imports: [
     CommonModule,
