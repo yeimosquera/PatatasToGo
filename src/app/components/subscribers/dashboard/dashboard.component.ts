@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SubscribersService } from '../services/subscribers.service';
 import { Subscriber } from 'src/app/interfaces/subscriber';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 const ELEMENT_DATA: Subscriber[] = [];
@@ -23,7 +25,9 @@ export class DashboardComponent implements OnInit {
     'titulo',
     'opciones'
   ];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<Subscriber>(ELEMENT_DATA);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   constructor(private _snackBar: MatSnackBar,
     private _subscribersService: SubscribersService) { }
@@ -34,7 +38,9 @@ export class DashboardComponent implements OnInit {
 
   loadTableSubscribers() {
     this._subscribersService.getSubscribers().subscribe(response => {
-      this.dataSource = response.Data;
+      this.dataSource = new MatTableDataSource<Subscriber>(response.Data);
+      this.dataSource.paginator = this.paginator;
+
     }, err => {
       500
       this.error('Algo salió mal en tu solicitud.');
