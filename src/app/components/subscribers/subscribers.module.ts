@@ -1,21 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SubscribersRoutingModule } from './subscribers-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
-import {MatTableModule} from '@angular/material/table';
+import { CreateSubscriberComponent } from './create-subscriber/create-subscriber.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+
+//Angular Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    RegisterComponent
+    CreateSubscriberComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +34,14 @@ import {MatSortModule} from '@angular/material/sort';
     MatIconModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class SubscribersModule { }
