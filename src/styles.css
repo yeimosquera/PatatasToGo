@@ -1,14 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
 
-.error{
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error {
   background-color: rgb(236, 105, 105);
   color: #f5f5f5;
   font-weight: bold;
 }
 
-a{
+a {
   cursor: pointer;
+}
+
+
+.success {
+  background-color: rgb(17, 209, 91);
+  color: #f5f5f5;
+  font-weight: bold;
 }

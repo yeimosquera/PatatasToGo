@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   //Esto es cargar rutas lazy (peresosas), para personalizar el acceso y cargar por partes
-  { path: 'suscriptores',  loadChildren: () => import('./components/subscribers/subscribers.module').then(x=> x.SubscribersModule)},
+  { path: 'suscriptores', loadChildren: () => import('./components/subscribers/subscribers.module').then(x => x.SubscribersModule) },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

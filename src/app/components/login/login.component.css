@@ -1,4 +1,4 @@
-.body{
+.body {
   display: flex;
   justify-content: center;
   height: 100%;
@@ -7,26 +7,24 @@
 
 }
 
-.login{
+.login {
   width: 100%;
   max-width: 330px;
   text-align: center;
 }
 
-.user{
+.user {
   width: 50%;
 }
 
-.width{
+.width {
   width: 80%
 }
 
-.button{
+.button {
   height: 50px;
 }
 
-.spinner{
+.spinner {
   margin: 0 auto;
 }
-
-

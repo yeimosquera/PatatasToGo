@@ -1,4 +1,4 @@
-export interface Subscriber{
+export interface Subscriber {
   SystemId: string,
   Area: string,
   PublicId: number,

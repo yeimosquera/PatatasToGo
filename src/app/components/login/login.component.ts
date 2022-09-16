@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup
   loading = false
 
-  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private _subscribersService: SubscribersService, private router:Router) {
+  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private _subscribersService: SubscribersService, private router: Router) {
     this.formLogin = this.formBuilder.group({
       user: ['', Validators.required],
       password: ['', Validators.required]
